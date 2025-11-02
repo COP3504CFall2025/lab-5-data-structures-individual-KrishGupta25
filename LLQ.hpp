@@ -19,7 +19,7 @@ public:
     // Deletion
     T dequeue() override 
     {
-        if (curr_size_ == 0) {throw std::runtime_error("size = 0");}
+        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");}
         T frontElement = list.getHead() -> data;
         list.RemoveHead();
         return frontElement;
