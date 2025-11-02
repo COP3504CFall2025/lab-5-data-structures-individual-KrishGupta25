@@ -103,6 +103,7 @@ public:
     {
         if (curr_size_ == 0) {throw std::runtime_error("curr_size_ = 0");}
         curr_size_--;
+        capacity_ --;
         return array_[curr_size_];
     }
 
