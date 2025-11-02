@@ -17,7 +17,7 @@ public:
 	// Behaviors
 	void printForward() const
 	{
-		Node current* = head;
+		Node* current = head;
 		while (current)
 		{
 			cout << current -> data << endl;
@@ -27,9 +27,9 @@ public:
 
 		cout << endl;
 	}
-	void printReverse() const
+	void PrintReverse() const
 	{
-		Node current* = tail;
+		Node* current = tail;
 		while (current)
 		{
 			cout << current -> data << endl;
@@ -48,7 +48,7 @@ public:
 	const Node* getTail() const { return tail; }
 
 	// Insertion
-	void addHead(const T& data)
+	void AddHead(const T& data)
 	{
 		Node* newNode = new Node{data, nullptr, head};
 		if(head) {head -> prev = newNode;}
@@ -57,7 +57,7 @@ public:
 		head = newNode;
 		count++;
 	}
-	void addTail(const T& data)
+	void AddTail(const T& data)
 	{
 		Node* newNode = new Node{data, tail, nullptr};
 		if (tail) {tail -> next = newNode;}
@@ -68,7 +68,7 @@ public:
 	}
 
 	// Removal
-	bool removeHead()
+	bool RemoveHead()
 	{
 		Node* temp = head;
 		head = head->next;
@@ -78,7 +78,7 @@ public:
 		--count;
 		return true;
 	}
-	bool removeTail()
+	bool RemoveTail()
 	{
 		Node* temp = tail;
 		tail = tail->prev;
@@ -91,7 +91,7 @@ public:
 	void clear() 
 	{
 		while (head)
-			removeHead();
+			RemoveHead();
 	}
 
 	// Operators
@@ -113,7 +113,7 @@ public:
 			clear();
 			Node* current = rhs.head;
 			while (current) {
-				addTail(current->data);
+				AddTail(current->data);
 				current = current->next;
 			}
 		}
@@ -121,13 +121,13 @@ public:
 	}
 
 	// Construction/Destruction
-	LinkedList() : head(nullptr), tail(nullptr), count(0);
+	LinkedList() : head(nullptr), tail(nullptr), count(0) {}
 	LinkedList(const LinkedList<T>& list) : head(nullptr), tail(nullptr), count(0)
 	{
 		Node* current = list.head;
 		while (current)
 		{
-			addTail(current -> data);
+			AddTail(current -> data);
 			current = current->next;
 		}
 	} 
