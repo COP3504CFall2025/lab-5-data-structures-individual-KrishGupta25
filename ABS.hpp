@@ -87,6 +87,7 @@ public:
             }
             delete[] array_;
             array_ = temp;
+            capacity_ *= scale_factor_;
         }
 
         array_[curr_size_] = data;
