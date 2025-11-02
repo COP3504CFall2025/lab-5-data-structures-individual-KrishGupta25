@@ -25,7 +25,11 @@ public:
     }
 
     // Access
-    T peek() const override { return list.getHead() -> data; }
+    T peek() const override 
+    { 
+        if (size_ == 0) {throw std::runtime_error("size = 0");}
+        return list.getHead() -> data; 
+    }
 
     // Getter
     std::size_t getSize() const noexcept override { return list.getCount(); }

@@ -181,7 +181,7 @@ public:
 		Node* current = list.head;
 		while (current)
 		{
-			AddTail(current);
+			AddTail(current -> data);
 			current = current -> next;
 		}
 	} 
