@@ -98,7 +98,7 @@ public:
     // Access
     T peek() const override
     {
-        if (size_ == 0) {throw std::runtime_error("size = 0");}
+        if (curr_size_ == 0) {throw std::runtime_error("size = 0");}
         return array_[0];
     }
 
@@ -108,7 +108,7 @@ public:
         T frontIndex = array_[0];
         for(size_t i = 1; i <curr_size_; i++)
         {
-            array_[i-1] = array_[i]
+            array_[i-1] = array_[i];
         }
         curr_size_ --;
         return frontIndex;

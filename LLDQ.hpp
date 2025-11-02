@@ -20,26 +20,26 @@ public:
     // Core Insertion Operations
     void pushFront(const T& item) override
     {
-        if (size_ == 0) {throw std::runtime_error("size = 0");}
+        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");}
         list.AddHead(item);
     }
     void pushBack(const T& item) override
     {
-        if (size_ == 0) {throw std::runtime_error("size = 0");}
+        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");}
         list.AddTail(item);
     }
 
     // Core Removal Operations
     T popFront() override
     {
-        if (size_ == 0) {throw std::runtime_error("size = 0");}
+        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");}
         T frontElement = list.getHead() -> data;
         list.RemoveHead();
         return frontElement;
     }
     T popBack() override
     {
-        if (size_ == 0) {throw std::runtime_error("size = 0");}
+        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");}
         T backElement = list.getTail() -> data;
         list.RemoveTail();
         return backElement;
@@ -50,7 +50,7 @@ public:
     const T& back() const override { return list.getTail() -> data; }
 
     // Getter
-    std::size_t getSize() const noexcept override { return list.count; }
+    std::size_t getSize() const noexcept override { return list.getCount(); }
 };
 
 

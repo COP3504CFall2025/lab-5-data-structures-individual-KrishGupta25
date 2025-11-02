@@ -22,13 +22,18 @@ public:
     // Deletion
     T pop() override
     {
+        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");}
         T frontElement = list.getHead() -> data;
         list.RemoveHead();
         return frontElement;
     }
 
     // Access
-    T peek() const override { return list.getHead() -> data; }
+    T peek() const override 
+    {
+        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");} 
+        return list.getHead() -> data; 
+    }
 
     //Getters
     std::size_t getSize() const noexcept override { return list.getCount(); }
