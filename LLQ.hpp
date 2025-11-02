@@ -19,9 +19,9 @@ public:
     // Deletion
     T dequeue() override 
     {
-        T frontElemenet = list.getHead() -> data;
+        T frontElement = list.getHead() -> data;
         list.RemoveHead();
-        return frontElemenet;
+        return frontElement;
     }
 
     // Access

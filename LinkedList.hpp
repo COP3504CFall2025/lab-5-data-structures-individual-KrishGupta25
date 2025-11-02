@@ -137,7 +137,7 @@ public:
 		return true;
 	}
 
-	void clear() 
+	void Clear() 
 	{
 		while(head) { RemoveHead(); }
 		count = 0;
@@ -148,7 +148,7 @@ public:
 	{
 		if(this != &other)
 		{
-			clear();
+			Clear();
 			head = other.head;
 			tail = other.tail;
 			count = other.count;
@@ -163,7 +163,7 @@ public:
 	{
 		if(this != &rhs)
 		{
-			clear();
+			Clear();
 			Node* current = rhs.head;
 			while (current)
 			{
@@ -196,7 +196,7 @@ public:
 		other.tail = nullptr;
 		other.count = 0;
 	}
-	~LinkedList(){clear();}
+	~LinkedList(){Clear();}
 
 private:
 	// Stores pointers to first and last nodes and count
