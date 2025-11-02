@@ -32,7 +32,7 @@ public:
             delete[] array_;
             capacity_ = rhs.capacity_;
             curr_size_ = rhs.curr_size_;
-            T* array_ = new T[capacity_];
+            array_ = new T[capacity_];
             for(size_t i = 0; i < curr_size_; i++)
             {
                 array_[i] = rhs.array_[i];
@@ -80,7 +80,7 @@ public:
     {
         if (curr_size_ == capacity_)
         {
-            T* temp = new T[capacity_ * 2];
+            T* temp = new T[capacity_ * scale_factor_];
             for(size_t i = 0; i < curr_size_; i++)
             {
                 temp[i] = array_[i];
@@ -89,7 +89,7 @@ public:
             array_ = temp;
         }
 
-        array_[curr_size_ + 1] = data;
+        array_[curr_size_] = data;
         curr_size_++;
     }
 
