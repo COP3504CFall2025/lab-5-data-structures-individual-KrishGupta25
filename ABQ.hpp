@@ -17,9 +17,9 @@ class ABQ : public QueueInterface<T>{
 
 public:
     // Constructors + Big 5
-    ABQ() : capacity_(1), curr_size_(0), array_(new T[capacity_]);
+    ABQ() : capacity_(1), curr_size_(0), array_(new T[capacity_]) {}
 
-    explicit ABQ(const size_t capacity) : capacity_(capacity), curr_size_(0), array_(new T[capacity_]);
+    explicit ABQ(const size_t capacity) : capacity_(capacity), curr_size_(0), array_(new T[capacity_]) {}
     
     ABQ(const ABQ& other) :
         capacity_(other.capacity_), curr_size_(other.curr_size_), array_(new T[other.capacity_])
@@ -89,6 +89,7 @@ public:
             }
             delete[] array_;
             array_ = temp;
+            capacity_ *= scale_factor_;
         }
 
         array_[curr_size_] = data;
@@ -105,6 +106,7 @@ public:
     // Deletion
     T dequeue() override
     {
+        if (curr_size_ == 0) {throw std::runtime_error("size = 0");}
         T frontIndex = array_[0];
         for(size_t i = 1; i <curr_size_; i++)
         {

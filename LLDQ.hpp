@@ -20,12 +20,10 @@ public:
     // Core Insertion Operations
     void pushFront(const T& item) override
     {
-        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");}
         list.AddHead(item);
     }
     void pushBack(const T& item) override
     {
-        if (list.getCount() == 0) {throw std::runtime_error("list.getCount() = 0");}
         list.AddTail(item);
     }
 
