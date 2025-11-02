@@ -64,7 +64,7 @@ public:
         }
         return *this;
     }
-    ~ABS() noexcept override { delete[] array_ ;}
+    ~ABS() noexcept { delete[] array_ ;}
 
     // Get the number of items in the ABS
     [[nodiscard]] size_t getSize() const noexcept override { return curr_size_; }

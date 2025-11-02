@@ -70,7 +70,7 @@ public:
         return *this;
     }
 
-    ~ABQ() noexcept override { delete[] array_; }
+    ~ABQ() noexcept { delete[] array_; }
 
     // Getters
     [[nodiscard]] size_t getSize() const noexcept override { return curr_size_; }
