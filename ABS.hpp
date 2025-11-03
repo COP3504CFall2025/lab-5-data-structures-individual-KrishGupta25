@@ -74,25 +74,7 @@ public:
 
     // Return underlying data for the stack
     [[nodiscard]] T* getData() const noexcept { return array_; }
-        void shrinkIfNeeded()
-    {
-        if ((size_ <= capacity_/4))
-        {
-            size_t tempCapacity = capacity_/2;
-            T* temp = new T[tempCapacity];
 
-            for (size_t i = 0; i < size_; i++) 
-            {
-                temp[i] = data_[(front_ + i) % capacity_];
-            }
-
-            delete[] data_;
-            data_ = temp;
-            capacity_ = tempCapacity;
-            front_ = 0;
-            back_ = size_;
-        }
-    }
 
     // Push item onto the stack
     void push(const T& data) override
@@ -118,11 +100,27 @@ public:
         return array_[curr_size_ - 1]; 
     }
 
+    void shrinkIfNeeded() 
+    {
+        if (curr_size_ <= capacity_ / 4) {
+            size_t newCapacity = capacity_ / 2;
+            T* temp = new T[newCapacity];
+
+            for (size_t i = 0; i < curr_size_; i++) {
+                temp[i] = array_[i];
+            }
+
+            delete[] array_;
+            array_ = temp;
+            capacity_ = newCapacity;
+        }
+    }   
+
     T pop() override 
     {
-        shrinkIfNeeded();
         if (curr_size_ == 0) {throw std::runtime_error("curr_size_ = 0");}
         curr_size_--;
+        shrinkIfNeeded();
         return array_[curr_size_];
     }
 

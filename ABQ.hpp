@@ -103,25 +103,21 @@ public:
         return array_[0];
     }
     
-    void shrinkIfNeeded()
+    void shrinkIfNeeded() 
     {
-        if ((size_ <= capacity_/4))
-        {
-            size_t tempCapacity = capacity_/2;
-            T* temp = new T[tempCapacity];
+        if (curr_size_ <= capacity_ / 4) {
+            size_t newCapacity = capacity_ / 2;
+            T* temp = new T[newCapacity];
 
-            for (size_t i = 0; i < size_; i++) 
-            {
-                temp[i] = data_[(front_ + i) % capacity_];
+            for (size_t i = 0; i < curr_size_; i++) {
+                temp[i] = array_[i];
             }
 
-            delete[] data_;
-            data_ = temp;
-            capacity_ = tempCapacity;
-            front_ = 0;
-            back_ = size_;
+            delete[] array_;
+            array_ = temp;
+            capacity_ = newCapacity;
         }
-    }
+    }  
 
     // Deletion
     T dequeue() override
