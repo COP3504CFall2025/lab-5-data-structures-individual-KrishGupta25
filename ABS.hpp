@@ -120,9 +120,10 @@ public:
     T pop() override 
     {
         if (curr_size_ == 0) {throw std::runtime_error("curr_size_ = 0");}
+        T value = array_[curr_size_ - 1];
         curr_size_--;
         shrinkIfNeeded();
-        return array_[curr_size_];
+        return value;
     }
 
 private:
