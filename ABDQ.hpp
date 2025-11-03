@@ -145,10 +145,8 @@ public:
     // Deletion
     T popFront() override
     {
-        
-        shrinkIfNeeded();
         if (size_ == 0) {throw std::runtime_error("size = 0");}
-
+        shrinkIfNeeded();
         T frontIndex = data_[front_];
         front_ = (front_ + 1) % capacity_;
         size_--;
@@ -157,10 +155,8 @@ public:
 
     T popBack() override
     {
-        
-        shrinkIfNeeded();
         if (size_ == 0) {throw std::runtime_error("size = 0");}
-
+        shrinkIfNeeded();
         size_t lastIndex = (back_ == 0) ? capacity_ - 1 : back_ - 1;
         T backElement = data_[lastIndex];
         back_ = lastIndex;

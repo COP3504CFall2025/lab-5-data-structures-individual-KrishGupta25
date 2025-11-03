@@ -102,11 +102,32 @@ public:
         if (curr_size_ == 0) {throw std::runtime_error("size = 0");}
         return array_[0];
     }
+    
+    void shrinkIfNeeded()
+    {
+        if ((size_ <= capacity_/4))
+        {
+            size_t tempCapacity = capacity_/2;
+            T* temp = new T[tempCapacity];
+
+            for (size_t i = 0; i < size_; i++) 
+            {
+                temp[i] = data_[(front_ + i) % capacity_];
+            }
+
+            delete[] data_;
+            data_ = temp;
+            capacity_ = tempCapacity;
+            front_ = 0;
+            back_ = size_;
+        }
+    }
 
     // Deletion
     T dequeue() override
     {
         if (curr_size_ == 0) {throw std::runtime_error("size = 0");}
+        shrinkIfNeeded();
         T frontIndex = array_[0];
         for(size_t i = 1; i <curr_size_; i++)
         {
