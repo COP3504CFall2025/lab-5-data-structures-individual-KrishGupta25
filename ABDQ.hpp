@@ -18,7 +18,7 @@ private:
 
 public:
     // Big 5
-    ABDQ() : capacity_(4), size_(0), front_(0), back_(0), data_(new T[capacity_]), {}
+    ABDQ() : capacity_(4), size_(0), front_(0), back_(0), data_(new T[capacity_]) {}
 
     explicit ABDQ(std::size_t capacity) : 
         capacity_(capacity), size_(0), front_(0), back_(0), data_(new T[capacity_]) {}
@@ -83,6 +83,26 @@ public:
 
     ~ABDQ(){ delete[] data_; }
 
+    void shrinkIfNeeded()
+    {
+        if (size_ > 0 && (size_ <= capacity_/4) && capacity_ > 4)
+        {
+            size_t tempCapacity = capacity_/2;
+            T* temp = new T[tempCapacity];
+
+            for (size_t i = 0; i < size_; i++) 
+            {
+                temp[i] = data_[(front_ + i) % capacity_];
+            }
+
+            delete[] data_;
+            data_ = temp;
+            capacity_ = tempCapacity;
+            front_ = 0;
+            back_ = size_;
+        }
+    }
+
     // Insertion
     void pushFront(const T& item) override
     {
@@ -130,6 +150,7 @@ public:
         T frontIndex = data_[front_];
         front_ = (front_ + 1) % capacity_;
         size_--;
+        shrinkIfNeeded();
         return frontIndex;
     }
 
@@ -141,6 +162,7 @@ public:
         T backElement = data_[lastIndex];
         back_ = lastIndex;
         size_--;
+        shrinkIfNeeded();
         return backElement;
     }
 
@@ -156,7 +178,7 @@ public:
         size_t lastIndex = (back_ == 0) ? capacity_ - 1 : back_ - 1;
         return data_[lastIndex]; 
     }
-
+    
     // Getters
     std::size_t getSize() const noexcept override { return size_; }
 
