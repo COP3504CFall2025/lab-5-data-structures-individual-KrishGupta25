@@ -102,7 +102,7 @@ public:
 
     void shrinkIfNeeded() 
     {
-        if (curr_size_ <= capacity_ / 4 && capacity_ > 1)
+        if (curr_size_ <= capacity_ / 4)
         {
             size_t newCapacity = capacity_ / 2;
             T* temp = new T[newCapacity];
