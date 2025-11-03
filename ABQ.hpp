@@ -123,13 +123,13 @@ public:
     T dequeue() override
     {
         if (curr_size_ == 0) {throw std::runtime_error("size = 0");}
-        shrinkIfNeeded();
         T frontIndex = array_[0];
         for(size_t i = 1; i <curr_size_; i++)
         {
             array_[i-1] = array_[i];
         }
         curr_size_ --;
+        shrinkIfNeeded();
         return frontIndex;
     }
 
